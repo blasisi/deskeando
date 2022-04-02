@@ -5,6 +5,25 @@
     margin:0;
     padding: 0;
 }
+a{
+    text-decoration:none;
+}
+.display{
+    transform:translateX(0);
+    transition:transform .5s ease-in-out;
+}
+
+.menu-icon{
+    width:48px;
+    height:48px;
+    margin-right:13vw;
+    display:none;
+}
+
+.menu-icon:active, .menu-icon:hover{
+    background:#367473;
+    border-radius:3px;
+}
 
 /* Holds everything in the navbar */
 .headerOuterWrapper{
@@ -13,9 +32,11 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding:1.5rem;
     background-color: #f0f0f0;
     height: var(--header-Height);
     width: 100vw;
+    z-index: 100;
 }
 
 /* Holds h1 and p tag */
@@ -60,11 +81,12 @@
         display: flex;
         /* justify-content: flex-start; */
     width: 70vw;
+    justify-content: space-around;
 }
 
 .navUL {
     display: flex;
-        justify-content: space-around;
+        
     flex-direction: row;
     list-style-type: none;
     /* font-size: 1.5rem; */
@@ -73,6 +95,7 @@
 
 
 .navLink{
+    width:50px;
     display: flex;
 
     text-decoration: none;
@@ -82,12 +105,71 @@
     /* font-size: 1.5em; */
 }
 
-.navLink:active{
+.navLinkLogoutButton{
+    /*Reset's every elements apperance*/
+        background: none repeat scroll 0 0 transparent;
+        border: medium none;
+        border-spacing: 0;
+        color: #26589F;
+        font-family: 'PT Sans Narrow',sans-serif;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 1.42rem;
+        list-style: none outside none;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        text-decoration: none;
+        text-indent: 0;
+    /*Reset's end*/
+
+    color: black;
+    font-size: 1.4rem;
+    padding-bottom: 0.7vh;
+    text-decoration: underline;
+    color: var(--bl-Black);
+    /* margin-right: 4rem; */
+    font-family: var(--paragraph-font-family);
+}
+
+.navLinkLogoutButton:hover{
+    color: var(--dk-Green);
+    /* font-weight: 900; */
+    cursor: pointer;
+}
+
+/* .navLink:active{
     text-decoration: underline;
     border-bottom: 2px var(--dk-Green) solid;
-}
+} */
 .navLink:hover{
     text-decoration: underline;
     border-bottom: 4px var(--dk-Green) solid;
 }
 /* Holds hero */
+
+
+@media screen and (max-width:768px){
+    .menu-icon{
+        display:block;
+    }
+    nav{
+    position:absolute;
+    top:15vw;
+    left:0;
+    transform: translateX(calc(100vw));
+    transition:transform .5s ease-in-out
+}
+.navLinkWrapper{
+    flex-direction: column;
+}
+.navList{
+    /* padding:5vw 34vw; */
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:100vw;
+    height:15vw;
+    background-color: #f0f0f0;
+}
+}
