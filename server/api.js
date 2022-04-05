@@ -25,7 +25,7 @@ const pool = new Pool({
     user:  bjbpnrdubidpfr,
     host: "ec2-63-32-248-14.eu-west-1.compute.amazonaws.com",
     database: dfl0icehrl89m9,
-    password: 3a6447fbaa3b7ef3c3ee402e57ab7052dd3cd95a0f30026627b134ee4f53e5d2,
+    password: "3a6447fbaa3b7ef3c3ee402e57ab7052dd3cd95a0f30026627b134ee4f53e5d2",
     port: 5432,
 });
 
