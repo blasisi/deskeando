@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
-import Header from "../components/Header";
-// import AdminSignIn from "../components/AdminSignIn";
-import NavbarGuest from "../components/NavbarGuest";
-import Footer from "../components/Footer";
-import ".././stylings/SignUp.css";
+import ".././stylings/signUp.css";
 import ".././stylings/LoginPage.css";
-import Hero from "../components/Hero";
+import Hero from ".././components/Hero";
 
 export default function LoginPage(props){
 
@@ -22,7 +18,7 @@ export default function LoginPage(props){
     console.log(globalUserDetails);
     //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-    function loginInSingUpSwitch(){
+    function loginInSingUpSwitch(passedBoolean){
         console.log(booleanSwitch);
         if (booleanSwitch) {
             setBooleanSwitch(false);

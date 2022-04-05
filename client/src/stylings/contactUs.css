@@ -1,6 +1,7 @@
 .ContactOuterWrapper{
-    padding-top: 15vh;
+    padding-top: 20vh;
     width: 100vw;
+    margin-bottom: 10vh;
 }
 
 
@@ -10,14 +11,19 @@
 }
 
 .ContactFirstInnerWrapper{
-    background-color: rgba(0, 0, 0, 0.178);
-    /* height: 40vh; */
+        background: rgb(0 0 0);
+    background: linear-gradient(90deg, rgba(0,0,0,0.7263480392156863) 0%, rgba(0,0,0,0.7463760504201681) 10%, rgba(0,0,0,0.7491771708683473) 90%, rgba(0,0,0,0.72) 100%);
+    height: auto;
     display: flex;
-    flex-direction: column;
+    padding: 2rem 1.5rem;
+    color: #ffffff;
+    width: 70vw;
+    margin: 0 auto;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin-top: 2vh;
+    border-radius: 10px;
 }
 
 .ContactFirstInnerWrapper h4{
@@ -28,6 +34,7 @@
 .ContactFirstInnerWrapper form{
     display: flex;
     flex-direction: column;
+    width:50%;
 }
 
 .ContactFirstInnerWrapper form label{
@@ -36,7 +43,7 @@
 
 .ContactFirstInnerWrapper form input{
     margin-top: 1vh;
-    width: 40vw;
+    width: 100%;
 }
 
 .ContactFirstInnerWrapper form input:last-child{
@@ -46,7 +53,7 @@
 
 .ContactFirstInnerWrapper form textarea{
     margin-top: 1vh;
-    width: 40vw;
+    width: 100%;
     height: 10vh;
     
 }
@@ -63,4 +70,18 @@
 .ContactDashboardButton{
     margin-top: 2vh;
     width: 40vw;
+}
+
+@media screen and (max-width:768px){
+    .ContactFirstInnerWrapper form{
+        width:90%;
+    }
+}
+
+@media screen and (min-width:768px){
+    .ContactOuterWrapper {
+    padding-top: 25vh;
+    width: 100vw;
+    margin-bottom: 20vh;
+    }
 }

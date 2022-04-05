@@ -21,8 +21,8 @@ export default function ConfirmationPage(props) {
 	console.log(globalBookingInfo);
 	//  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-	// const [globalUserDetails, setGlobalUserDetails] = useState({ user_id : "4", first_name : "Sharmaine", last_name : "Taylor", email : "Staylor@gmail.com", accessibility : true});
-	// const [globalBookingInfo, setGlobalBookingInfo] = useState({desk_id: "", date_booked: "", am:false, pm:false})
+	//const [globalUserDetails, setGlobalUserDetails] = useState({ user_id : "4", first_name : "Sharmaine", last_name : "Taylor", email : "Staylor@gmail.com", accessibility : true});
+	//const [globalBookingInfo, setGlobalBookingInfo] = useState({desk_id: "", date_booked: "", am:false, pm:false})
 
 	let timings;
 
@@ -39,12 +39,21 @@ export default function ConfirmationPage(props) {
 			<h1>That's booked for you</h1>
 			<div className="ConfirmationPageInnerWrapper">
 				<h2>Your desk booking details</h2>
-				<ul>
-					<li>Name : {globalUserDetails.first_name}{" "}{globalUserDetails.last_name}</li>
-					<li>Date : {globalBookingInfo.date_booked}{" "} from {timings}</li>
-					<li>Desk : {globalBookingInfo.desk_id}</li>
-				</ul>
+				{(globalBookingInfo.other_id > 0) ? (
+					<ul>
+						<li>Name : {globalBookingInfo.other_first_name}{" "}{globalBookingInfo.other_last_name}</li>
+						<li>Date : {globalBookingInfo.date_booked}{" "} from {timings}</li>
+						<li>Desk : {globalBookingInfo.desk_id}</li>
+					</ul>
+				):(
+					<ul>
+						<li>Name : {globalUserDetails.first_name}{" "}{globalUserDetails.last_name}</li>
+						<li>Date : {globalBookingInfo.date_booked}{" "} from {timings}</li>
+						<li>Desk : {globalBookingInfo.desk_id}</li>
+					</ul>
+				)}
 				
+
 			</div>
 			<div className="ConfirmationPageBottomWrapper">
 				<h3>Back to your dashboard</h3>

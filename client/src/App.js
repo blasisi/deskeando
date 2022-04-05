@@ -9,8 +9,8 @@ import BookingPage from "./pages/BookingPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import UserPreferencesPage from "./pages/UserPreferencesPage";
 import AboutPage from "./pages/AboutPage";
-import Moment from 'react-moment';
-import moment from 'moment';
+import Moment from "react-moment";
+import moment from "moment";
 import "./stylings/root.css";
 import ContactUs from "./components/ContactUs";
 
@@ -19,9 +19,10 @@ export default function App(){
 
 	//  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ globalUserDetails useState AND setGlobalUserDetails setState ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
-	const [globalUserDetails, setGlobalUserDetails] = useState({ user_id : 0, first_name : "", last_name : "", email : "", accessibility : false});
+	const [globalUserDetails, setGlobalUserDetails] = useState({ user_id : "", first_name : "", last_name : "", email : "", accessibility : false });
 	// const [globalUserDetails, setGlobalUserDetails] = useState({ user_id: 3, first_name: 'Admin', last_name: 'Istrator', email: 'admin@admin.com', accessibility: true});
-	console.log(globalUserDetails);
+	// console.log(globalUserDetails);
+
 
 	/*
 
@@ -35,10 +36,9 @@ export default function App(){
 	<button onClick={()=>setGlobalUserDetails({...globalUserDetails, accessability : false})}>Accessability = false</button>
 	*/
 	// const [globalBookingInfo, setGlobalBookingInfo] = useState({desk_id: "", date_booked: moment().format('YYYY-MM-D'), am:false, pm:false})
-	const [globalBookingInfo, setGlobalBookingInfo] = useState({ desk_id: "", date_booked: "", am:false, pm:false });
+	const [globalBookingInfo, setGlobalBookingInfo] = useState({ desk_id: "", date_booked: "", am:false, pm:false, other_id: 0, other_first_name : "", other_last_name : "", other_email : "" });
 
     //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-
 
 
 
@@ -47,21 +47,49 @@ export default function App(){
 
 		<Header globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)} />
 
+		
 		<Routes>
 			<Route path="/" element={<LoginPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)} />} />
-
-			<Route path="/dashboard" element={<Dashboard globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>} />
-			<Route path="/preferences" element={<UserPreferencesPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>} />
-			
-			<Route path="/booking" element={<BookingPage globalBookingInfo={globalBookingInfo} setGlobalBookingInfo={(data)=>setGlobalBookingInfo(data)} 
-			globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>} />
-			
-
-			<Route path="/confirm" element={<ConfirmationPage  globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)} globalBookingInfo={globalBookingInfo} setGlobalBookingInfo={(data)=>setGlobalBookingInfo(data)}/>} />
 			<Route path="/about" element={<AboutPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data) => setGlobalUserDetails(data)} />} />
 			<Route path="/contactUs" element={<ContactUs globalUserDetails={globalUserDetails} setGlobalUserDetails={(data) => setGlobalUserDetails(data)} />} />
 
+			<Route 
+				path="/dashboard"
+				element={(globalUserDetails.user_id != "") ? (
+					<Dashboard globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>
+				):(
+					<LoginPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>
+					// alert={("Login or Signup required before this page will open")}
+				)} 
+			/>
+			
+			<Route 
+				path="/preferences"
+				element={(globalUserDetails.user_id != "") ? (
+					<UserPreferencesPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>
+				):(
+					<LoginPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>
+				)} 
+			/>
+			
+			<Route 
+				path="/booking"
+				element={(globalUserDetails.user_id != "") ? (
+					<BookingPage globalBookingInfo={globalBookingInfo} setGlobalBookingInfo={(data)=>setGlobalBookingInfo(data)} 
+					globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>
+				):(
+					<LoginPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>
+				)} 
+			/>
 
+			<Route 
+				path="/confirm"
+				element={(globalUserDetails.user_id != "") ? (
+					<ConfirmationPage  globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)} globalBookingInfo={globalBookingInfo} setGlobalBookingInfo={(data)=>setGlobalBookingInfo(data)}/>
+				):(
+					<LoginPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>
+				)} 
+			/>
 		</Routes>
 		<Footer />
 		</div>
@@ -70,34 +98,3 @@ export default function App(){
 }
 
 
-		// <div>
-		// <Routes>
-		// 	<Route path="/" element={<LoginPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)} />} />
-
-		// 	{(globalUserDetails.user_id != "") ? (
-
-		// 		<>
-		// 			<BookingSVG globalBookingInfo={globalBookingInfo} setGlobalBookingInfo={(data)=>setGlobalBookingInfo(data)}
-		// 			selectedDateParent={selectedDateParent} setSelectedDateParent={(data)=>setSelectedDateParent(data)}
-		// 			globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>
-
-		// 			<Route path="/dashboard" element={<Dashboard globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>} />
-		// 			<Route path="/preferences" element={<UserPreferencesPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>} />
-
-		// 			<Route path="/booking" element={<BookingPage globalBookingInfo={globalBookingInfo} setGlobalBookingInfo={(data)=>setGlobalBookingInfo(data)}
-		// 			globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>} />
-
-		// 			<Route path="/confirm" element={<ConfirmationPage  globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>} />
-
-		// 		</>
-
-        //     ) : (
-        //         <div className="ListCalenderBannerWrapper">
-        //             <Route path="/" element={<LoginPage globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)} />} />
-        //         </div>
-        //     )}
-
-
-		// 	<Route path="/about" element={<AboutPage  globalUserDetails={globalUserDetails} setGlobalUserDetails={(data)=>setGlobalUserDetails(data)}/>} />
-		// </Routes>
-		// </div>
